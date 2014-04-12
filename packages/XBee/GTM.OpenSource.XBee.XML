@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GTM.OpenSource.XBee</name>
+    </assembly>
+    <members>
+        <member name="T:Gadgeteer.Modules.OpenSource.XBee">
+            <summary>
+            A XBee module for Microsoft .NET Gadgeteer
+            </summary>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.#ctor(System.Int32)">
+            <summary>
+            Use this constructor if you are connecting XBee using Gadgteteer socket.
+            </summary>
+            <param name="socketNumber">The socket that this module is plugged in to.</param>
+            <remarks>
+            The function <see cref="M:Gadgeteer.Modules.OpenSource.XBee.Configure(System.Int32)"/> can be called to configure the <see cref="P:Gadgeteer.Modules.OpenSource.XBee.SerialLine"/> before it is used.
+            If it is not called before first use, then the following defaults will be used and cannot be changed afterwards:
+            <list type="bullet">
+             <item>Baud Rate - 9600</item>
+             <item>Parity - <see cref="T:System.IO.Ports.Parity">Parity.None</see></item>
+             <item>Stop Bits - <see cref="T:System.IO.Ports.StopBits">StopBits.One</see></item>
+             <item>Data Bits - 8</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.#ctor(System.String,Microsoft.SPOT.Hardware.Cpu.Pin,Microsoft.SPOT.Hardware.Cpu.Pin)">
+            <summary>
+            Use this constructor if you want to connect XBee to mainboard using raw pins, not Gadgeteer sockets.
+            </summary>
+            <remarks>
+            Use this with Cerbuino Bee for example.
+            </remarks>
+            <param name="serialPortName">serial port name to use</param>
+            <param name="resetPin">pin number that controls module reset</param>
+            <param name="sleepPin">pin number that controls module sleep</param>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.Configure(System.Int32)">
+            <summary>
+            Configures this serial line.
+            </summary>
+            <remarks>
+            This should be called at most once.
+            </remarks>
+            <param name="baudRate">The baud rate.</param>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.Reset">
+            <summary>
+            Perform module hardware reset.
+            </summary>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.Disable">
+            <summary>
+            Disables the module (power off).
+            </summary>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.Enable">
+            <summary>
+            Enabled the module (power on).
+            </summary>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.Sleep">
+            <summary>
+            Sets the sleep control pin to active state (sleep request).
+            </summary>
+        </member>
+        <member name="M:Gadgeteer.Modules.OpenSource.XBee.Awake">
+            <summary>
+            Sets the sleep control pin to inactive state (no sleep request)
+            </summary>
+        </member>
+        <member name="P:Gadgeteer.Modules.OpenSource.XBee.Api">
+            <summary>
+            Gets the <see cref="T:NETMF.OpenSource.XBee.XBeeApi"/> of the connected XBee module.
+            </summary>
+        </member>
+        <member name="P:Gadgeteer.Modules.OpenSource.XBee.SerialLine">
+            <summary>
+            Gets the <see cref="T:NETMF.OpenSource.XBee.IXBeeConnection"/> associated with this instance.
+            </summary>
+        </member>
+        <member name="P:Gadgeteer.Modules.OpenSource.XBee.Enabled">
+            <summary>
+            Returns state of the module that is controlled by reset pin.
+            </summary>
+        </member>
+        <member name="P:Gadgeteer.Modules.OpenSource.XBee.Sleeping">
+            <summary>
+            If the module is configured to work in PinSleep mode this value determines if it's asleep or not.
+            </summary>
+        </member>
+    </members>
+</doc>
