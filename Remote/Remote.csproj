@@ -39,18 +39,8 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="Program.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Program.gadgeteer</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gadgeteer" />
@@ -79,25 +69,6 @@
       <HintPath>..\packages\XBee\OpenSource.XBee.dll</HintPath>
     </Reference>
     <Reference Include="System.IO" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Program.gadgeteer">
-      <Generator>GadgeteerFileCodeGenerator</Generator>
-      <LastGenOutput>Program.generated.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Program.gadgeteer.diagram">
-      <DependentUpon>Program.gadgeteer</DependentUpon>
-    </None>
-    <None Include="Resources\NinaB.tinyfnt" />
-    <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modules\Modules.csproj">
