@@ -11,13 +11,18 @@
 namespace Remote {
     using Gadgeteer;
     using GTM = Gadgeteer.Modules;
-    using XBee = Gadgeteer.Modules.OpenSource.XBee;
     
     
     public partial class Program : Gadgeteer.Program {
         
         /// <summary>The XBee module using socket 4 of the mainboard.</summary>
-        private XBee xBee;
+        private Gadgeteer.Modules.OpenSource.XBee xbee;
+        
+        /// <summary>The Joystick module using socket 9 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.Joystick joystick;
+        
+        /// <summary>The Display_T35 module using sockets 14, 13, 12 and 10 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.Display_T35 display_T35;
         
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
         protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
@@ -41,7 +46,9 @@ namespace Remote {
         }
         
         private void InitializeModules() {
-            this.xBee = new XBee(4);
+            this.xbee = new GTM.OpenSource.XBee(8);
+            this.joystick = new GTM.GHIElectronics.Joystick(9);
+            this.display_T35 = new GTM.GHIElectronics.Display_T35(14, 13, 12, 10);
         }
     }
 }
