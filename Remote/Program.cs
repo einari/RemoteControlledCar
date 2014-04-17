@@ -2,11 +2,15 @@
 using System.Text;
 using Gadgeteer;
 using Gadgeteer.Modules;
+using Gadgeteer.Modules.GHIElectronics;
+using GHIElectronics.Gadgeteer;
 using Microsoft.SPOT;
 using Modules;
 using NETMF.OpenSource.XBee;
 using NETMF.OpenSource.XBee.Api;
 using NETMF.OpenSource.XBee.Api.Common;
+using XBee = Gadgeteer.Modules.OpenSource.XBee;
+
 
 namespace Remote
 {
@@ -20,25 +24,35 @@ namespace Remote
     }
 
 
-    public partial class Program
+    public class Program : Gadgeteer.Program
     {
         ArrayList _nodes = new ArrayList();
-
         CharacterDisplay _characterDisplay;
 
-        void ProgramStarted()
+        FEZSpider _mainBoard;
+        XBee _xbee;
+        Joystick _joystick;
+        Display_T35 _display;
+
+
+        public Program(FEZSpider mainboard)
         {
+            _mainBoard = mainboard;
+            
+            _xbee = new Gadgeteer.Modules.OpenSource.XBee(8);
+            _joystick = new Gadgeteer.Modules.GHIElectronics.Joystick(9);
+            _display = new Gadgeteer.Modules.GHIElectronics.Display_T35(14, 13, 12, 10);
             _characterDisplay = new CharacterDisplay(3, 0x20);
             _characterDisplay.SetCursor(0, 0);
             _characterDisplay.PrintString("Starting up");
             
-            xbee.DebugPrintEnabled = true;
+            _xbee.DebugPrintEnabled = true;
             
-            xbee.Configure();
-            xbee.Api.StatusChanged += Api_StatusChanged;
-            xbee.Api.DataReceived += Api_DataReceived;
-            Debug.Print("Connected : " + xbee.Api.IsConnected());
-            xbee.Api.DiscoverNodes(NodeDiscovered);
+            _xbee.Configure();
+            _xbee.Api.StatusChanged += Api_StatusChanged;
+            _xbee.Api.DataReceived += Api_DataReceived;
+            Debug.Print("Connected : " + _xbee.Api.IsConnected());
+            _xbee.Api.DiscoverNodes(NodeDiscovered);
 
             var joystickTimer = new Timer(100);
             joystickTimer.Tick += joystickTimer_Tick;
@@ -52,21 +66,21 @@ namespace Remote
 
         void joystickTimer_Tick(Timer timer)
         {
-            var position = joystick.GetPosition();
+            var position = _joystick.GetPosition();
 
             foreach (NodeInfo node in _nodes)
             {
 
                 var positionString = "move: {{ x: "+position.X+", y: "+position.Y+" }}";
                 positionString = position.Y.ToString();
-                xbee.Api.Send(positionString).To(node).NoResponse();
+                _xbee.Api.Send(positionString).To(node).NoResponse();
             }
         }
 
         void Api_StatusChanged(XBeeApi x, ModemStatus status)
         {
             if (status == ModemStatus.Associated)
-                xbee.Api.DiscoverNodes(NodeDiscovered);
+                _xbee.Api.DiscoverNodes(NodeDiscovered);
         }
 
 
@@ -84,6 +98,16 @@ namespace Remote
 
             var i = 0;
             i++;
+        }
+
+
+        public static void Main()
+        {
+            var mainboard = new FEZSpider();
+            Gadgeteer.Program.Mainboard = mainboard;
+
+            var program = new Program(mainboard);
+            program.Run();
         }
     }
 }
