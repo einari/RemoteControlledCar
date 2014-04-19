@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Reflection;
 using System.Text;
 using Gadgeteer;
 using Gadgeteer.Modules;
@@ -23,6 +24,21 @@ namespace Remote
         }
     }
 
+    public class Something
+    {
+    }
+
+    public class SomethingElse
+    {
+        public Something Something { get; set; }
+
+        public SomethingElse(Something e)
+        {
+            Something = e;
+        }
+
+    }
+
 
     public class Program : Gadgeteer.Program
     {
@@ -37,6 +53,17 @@ namespace Remote
 
         public Program(FEZSpider mainboard)
         {
+            var methods = typeof(SomethingElse).GetMethods(BindingFlags.CreateInstance | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            var constructor = methods[0];
+
+            var instance = constructor.Invoke(this, new[] { new Something() });
+
+
+            ConstructorInfo c;
+
+            
+
             _mainBoard = mainboard;
             
             _xbee = new Gadgeteer.Modules.OpenSource.XBee(8);
