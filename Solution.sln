@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car", "Car\Car.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules", "Modules\Modules.csproj", "{10CBEF49-DA9B-4C61-A1C9-7122AB14F328}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CecilTest", "CecilTest\CecilTest.csproj", "{3108A8D9-719D-4760-B8A8-BC4CFBEB51FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{10CBEF49-DA9B-4C61-A1C9-7122AB14F328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10CBEF49-DA9B-4C61-A1C9-7122AB14F328}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10CBEF49-DA9B-4C61-A1C9-7122AB14F328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3108A8D9-719D-4760-B8A8-BC4CFBEB51FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3108A8D9-719D-4760-B8A8-BC4CFBEB51FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3108A8D9-719D-4760-B8A8-BC4CFBEB51FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3108A8D9-719D-4760-B8A8-BC4CFBEB51FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
