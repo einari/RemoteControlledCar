@@ -39,11 +39,6 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="Program.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Program.gadgeteer</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -58,6 +53,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GHIElectronics.Gadgeteer.FEZCerberus, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="GTM.GHIElectronics.MotorControllerL298, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GTM.GHIElectronics.XBee, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,14 +83,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Program.gadgeteer">
-      <Generator>GadgeteerFileCodeGenerator</Generator>
-      <LastGenOutput>Program.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Program.gadgeteer.diagram">
-      <DependentUpon>Program.gadgeteer</DependentUpon>
-    </None>
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Modules.csproj">
+      <Project>{10CBEF49-DA9B-4C61-A1C9-7122AB14F328}</Project>
+      <Name>Modules</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
